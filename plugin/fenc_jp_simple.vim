@@ -3,15 +3,13 @@ if exists('g:fenc_jp_simple')
 endif
 let g:fenc_jp_simple = 1
 
+if !exists('g:fenc_jp_use_en_menu')
+	g:fenc_jp_use_en_menu = 1
+endif
+
 " Save user-configuration.
 let s:cpo_save = &cpo
 set cpo&vim
-
-function! SetFenc(code, cond)
-	if !&readonly && &buftype != 'quickfix' && a:cond == 0
-		execute 'setlocal fileencoding=' . a:code
-	endif
-endfunction
 
 function! AddFenc(coding)
 	if &fileencodings !~ a:coding
@@ -19,8 +17,12 @@ function! AddFenc(coding)
 	endif
 endfunction
 
-set encoding=utf-8
+" Set internal encoding. Recommended to use 'utf-8'.
+if !exists('g:fenc_jp_skip_encoding')
+	set encoding=utf-8
+endif
 
+" &fileencodings is the list of encodings.
 set fileencodings=
 call AddFenc('ucs-bom')
 
@@ -40,18 +42,23 @@ call AddFenc('cp932')
 call AddFenc('default')
 call AddFenc('latin1')
 
+" Configuration for Ambiguous Width Character in UTF-8.
 if &encoding == 'utf-8' && exists('&ambiwidth')
 	set ambiwidth=double
 endif
 
+" Configuration for menu language.
 if exists('&langmenu')
-	if exists('g:fenc_jp_use_en_menu') && g:fenc_jp_use_en_menu
+	if g:fenc_jp_use_en_menu
 		set langmenu=none
 	elseif &encoding == 'utf-8'
 		set langmenu=ja_JP.utf-8
+	elseif &encoding == 'cp932'
+		set langmenu=ja_JP.cp932
 	endif
 endif
 
+" Reload menu.vim if it's already loaded.
 if exists('did_install_default_menus')
 	source $VIMRUNTIME/delmenu.vim
 	source $VIMRUNTIME/menu.vim
