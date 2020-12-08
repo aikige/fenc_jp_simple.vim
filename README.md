@@ -1,1 +1,1 @@
-"# fenc_jp_simple.vim" 
+# fenc_jp_simple.vim

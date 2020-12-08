@@ -29,7 +29,7 @@ if exists('g:fenc_jp_default')
 	execute 'set fileencoding=' . g:fenc_jp_default
 	call AddFenc(g:fenc_jp_default)
 else
-	set fileencoding=&encoding
+	execute 'set fileencoding=' . &encoding
 	call AddFenc(&encoding)
 endif
 
