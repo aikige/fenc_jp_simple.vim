@@ -4,7 +4,7 @@ endif
 let g:fenc_jp_simple = 1
 
 if !exists('g:fenc_jp_use_en_menu')
-	g:fenc_jp_use_en_menu = 1
+	let g:fenc_jp_use_en_menu = 1
 endif
 
 " Save user-configuration.
