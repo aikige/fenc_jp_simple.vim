@@ -15,6 +15,10 @@ call plug#begin('~/.vim/plugged')
 ".. Other plugins
 Plug 'aikige/fenc_jp_simple.vim'
 call plug#end()
+
+try
+	call fenc_jp_simple#setup()
+endtry
 ```
 
 And execute command `:PlugInstall` or `:PlugUpdate`.

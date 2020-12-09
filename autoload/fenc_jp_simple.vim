@@ -1,7 +1,7 @@
-"if exists('g:fenc_jp_simple')
-"	finish
-"endif
-"let g:fenc_jp_simple = 1
+if exists('g:fenc_jp_simple')
+	finish
+endif
+let g:fenc_jp_simple = 1
 
 " Save user-configuration.
 let s:cpo_save = &cpo
@@ -62,7 +62,7 @@ function! fenc_jp_simple#setup()
 	endif
 
 	" Reload menu.vim if it's already loaded.
-	if exists('did_install_default_menus')
+	if exists('g:did_install_default_menus')
 		source $VIMRUNTIME/delmenu.vim
 		source $VIMRUNTIME/menu.vim
 	endif
