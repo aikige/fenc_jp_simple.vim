@@ -1,8 +1,3 @@
-if exists('g:fenc_jp_simple_autoload')
-	finish
-endif
-let g:fenc_jp_simple_autoload = 1
-
 " Save user-configuration.
 let s:cpo_save = &cpo
 set cpo&vim
@@ -14,6 +9,16 @@ function! s:get_uniq_item(list, value)
 		endif
 	endfor
 	return [a:value]
+endfunction
+
+function! fenc_jp_simple#cleanup()
+	if exists('g:fenc_jp_simple_setup')
+		unlet g:fenc_jp_simple_setup
+	endif
+	"set encoding=
+	set fileencoding=
+	set fileencodings=
+	set langmenu=
 endfunction
 
 function! fenc_jp_simple#setup()
@@ -36,18 +41,18 @@ function! fenc_jp_simple#setup()
 	execute 'set fileencoding=' . l:fenc_jp_default
 
 	" First item can be 'ucs-bom', since it can be identified by BOM.
-	let s:fencs = ['ucs-bom']
+	let l:fencs = ['ucs-bom']
 	" 2nd item in fileencodings should be default file-encoding.
-	let s:fencs += s:get_uniq_item(s:fencs, l:fenc_jp_default)
+	let l:fencs += s:get_uniq_item(l:fencs, l:fenc_jp_default)
 	" Other items.
-	let s:fencs += s:get_uniq_item(s:fencs, 'iso-2022-jp')
-	let s:fencs += s:get_uniq_item(s:fencs, 'euc-jp')
-	let s:fencs += s:get_uniq_item(s:fencs, 'cp932')
-	let s:fencs += s:get_uniq_item(s:fencs, 'utf-8')
-	let s:fencs += s:get_uniq_item(s:fencs, 'utf-16')
-	let s:fencs += s:get_uniq_item(s:fencs, 'default')
-	let s:fencs += s:get_uniq_item(s:fencs, 'latin1')
-	execute 'set fileencodings=' . join(s:fencs, ',')
+	let l:fencs += s:get_uniq_item(l:fencs, 'iso-2022-jp')
+	let l:fencs += s:get_uniq_item(l:fencs, 'euc-jp')
+	let l:fencs += s:get_uniq_item(l:fencs, 'cp932')
+	let l:fencs += s:get_uniq_item(l:fencs, 'utf-8')
+	let l:fencs += s:get_uniq_item(l:fencs, 'utf-16')
+	let l:fencs += s:get_uniq_item(l:fencs, 'default')
+	let l:fencs += s:get_uniq_item(l:fencs, 'latin1')
+	execute 'set fileencodings=' . join(l:fencs, ',')
 
 	" Configuration for Ambiguous Width Character in UTF-8.
 	if &encoding == 'utf-8' && exists('&ambiwidth')
