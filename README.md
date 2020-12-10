@@ -16,12 +16,17 @@ call plug#begin('~/.vim/plugged')
 Plug 'aikige/fenc_jp_simple.vim'
 call plug#end()
 
+```
+
+And execute command `:PlugInstall` or `:PlugUpdate`.
+
+If you want to control timing of setting `encoding`, `fileencoding` and `fileencodings`, please include following command in your `.vimrc`.
+
+```
 try
 	call fenc_jp_simple#setup()
 endtry
 ```
-
-And execute command `:PlugInstall` or `:PlugUpdate`.
 
 ## Detailed Behavior
 
