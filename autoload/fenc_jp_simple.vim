@@ -2,7 +2,6 @@ if exists('g:fenc_jp_simple_autoload')
 	finish
 endif
 let g:fenc_jp_simple_autoload = 1
-echom "fenc_jp_simple:autoload"
 
 " Save user-configuration.
 let s:cpo_save = &cpo
@@ -22,7 +21,6 @@ function! fenc_jp_simple#setup()
 		return
 	endif
 	let g:fenc_jp_simple_setup = 1
-	echom "fenc_jp_simple:setup"
 
 	" Set internal encoding. Recommended to use 'utf-8'.
 	if !exists('g:fenc_jp_skip_encoding')
