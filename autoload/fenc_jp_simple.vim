@@ -12,8 +12,8 @@ function! s:get_uniq_item(list, value)
 endfunction
 
 function! fenc_jp_simple#cleanup()
-	if exists('g:fenc_jp_simple_setup')
-		unlet g:fenc_jp_simple_setup
+	if exists('g:fenc_jp_encoding')
+		unlet g:fenc_jp_encoding
 	endif
 	"set encoding=
 	set fileencoding=
@@ -21,29 +21,31 @@ function! fenc_jp_simple#cleanup()
 	set langmenu=
 endfunction
 
-function! fenc_jp_simple#setup()
-	if exists('g:fenc_jp_simple_setup')
-		return
-	endif
-	let g:fenc_jp_simple_setup = 1
-
+function! fenc_jp_simple#setup(...)
 	" Set internal encoding. Recommended to use 'utf-8'.
 	if !exists('g:fenc_jp_skip_encoding')
 		set encoding=utf-8
 	endif
 
-	" g:fenc_jp_default is used to set default encoding for files.
-	if exists('g:fenc_jp_default')
-		let l:fenc_jp_default = g:fenc_jp_default
+	" identify primary encoding.
+	if a:0 == 0
+		let l:primary = &encoding
 	else
-		let l:fenc_jp_default = &encoding
+		let l:primary = a:1
+	end
+	if exists('g:fenc_jp_encoding') && g:fenc_jp_encoding == l:primary
+		" avoid duplicated setting.
+		return
 	endif
-	execute 'set fileencoding=' . l:fenc_jp_default
+	let g:fenc_jp_encoding = l:primary
+
+	" Set fileencoding. 
+	execute 'set fileencoding=' . l:primary
 
 	" First item can be 'ucs-bom', since it can be identified by BOM.
 	let l:fencs = ['ucs-bom']
-	" 2nd item in fileencodings should be default file-encoding.
-	let l:fencs += s:get_uniq_item(l:fencs, l:fenc_jp_default)
+	" 2nd item in fileencodings should be primary file-encoding.
+	let l:fencs += s:get_uniq_item(l:fencs, l:primary)
 	" Other items.
 	let l:fencs += s:get_uniq_item(l:fencs, 'iso-2022-jp')
 	let l:fencs += s:get_uniq_item(l:fencs, 'euc-jp')
