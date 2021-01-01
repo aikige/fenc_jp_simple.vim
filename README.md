@@ -57,7 +57,7 @@ Following global variable affects to behavior of the script.
 
 |Variable|Note|
 |:--|:--|
-|`g:fenc_jp_use_en_menu`|When this value is 1, menu will be shown in English.|
+|`g:fenc_jp_use_en_menu`|When this value is 1, menu is shown in English. Default value is `0`.|
 |`g:fenc_jp_skip_encoding`|When this variable is set, script dose not change existing `encoding`.|
 
 ### How to change default file-encoding

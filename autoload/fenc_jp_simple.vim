@@ -65,7 +65,7 @@ function! fenc_jp_simple#setup(...)
 	if exists('g:fenc_jp_use_en_menu')
 		let l:fenc_jp_use_en_menu = g:fenc_jp_use_en_menu
 	else
-		let l:fenc_jp_use_en_menu = 1
+		let l:fenc_jp_use_en_menu = 0
 	endif
 	if exists('&langmenu')
 		if l:fenc_jp_use_en_menu
