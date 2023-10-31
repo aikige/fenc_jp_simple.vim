@@ -61,6 +61,31 @@ function! fenc_jp_simple#setup(...)
 		set ambiwidth=double
 	endif
 
+	" Avoid character width problem with emoji like ☺.
+	" Reference: https://en.wikipedia.org/wiki/Unicode_block
+	" Reference: https://en.wikipedia.org/wiki/Emoji#Unicode_blocks
+	" Note: Emoticons are automatically recognized.
+	if (&encoding == 'utf-8') && exists('*setcellwidths')
+		let cwdb = []
+		let cwdb = add(cwdb, [0xb2, 0xb3, 1])	" Superscript 2 & 3
+		let cwdb = add(cwdb, [0xb9, 0xb9, 1])	" Superscript 1
+		"let cwdb = add(cwdb, [0x00a9, 0x00a9, 2])	" Copyright Sign
+		"let cwdb = add(cwdb, [0x00ae, 0x00ae, 2])	" Registered Sign
+		"let cwdb = add(cwdb, [0x203c, 0x203c, 2])	" Double Exclamation Mark
+		"let cwdb = add(cwdb, [0x2049, 0x2049, 2])	" Exclamation Question Mark
+		"let cwdb = add(cwdb, [0x2122, 0x2122, 2])	" Trade Mark Sign
+		let cwdb = add(cwdb, [0x2139, 0x2139, 2])	" Information Source
+		let cwdb = add(cwdb, [0x2328, 0x2328, 2])	" Keyboard
+		let cwdb = add(cwdb, [0x23cf, 0x23cf, 2])	" Eject Symbol
+		let cwdb = add(cwdb, [0x25fb, 0x25fc, 2])	" White/Black Medium Square
+		let cwdb = add(cwdb, [0x2600, 0x26ff, 2])	" Block: Miscellaneous Symbols
+		let cwdb = add(cwdb, [0x2700, 0x27bf, 2])	" Block: Dingbats
+		let cwdb = add(cwdb, [0x2b00, 0x2bff, 2])	" Block: Miscellaneous Symbol and Arrows
+		"let cwdb = add(cwdb, [0x1f600, 0x1f64f, 2])	" Block: Emoticons (Face Marks)
+		call setcellwidths(cwdb)
+		unlet cwdb
+	endif
+
 	" Configuration for menu language.
 	if exists('g:fenc_jp_use_en_menu')
 		let l:fenc_jp_use_en_menu = g:fenc_jp_use_en_menu
