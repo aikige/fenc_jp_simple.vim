@@ -69,8 +69,8 @@ function! fenc_jp_simple#setup(...)
 		let cwdb = []
 		let cwdb = add(cwdb, [0xb2, 0xb3, 1])	" Superscript 2 & 3
 		let cwdb = add(cwdb, [0xb9, 0xb9, 1])	" Superscript 1
-		"let cwdb = add(cwdb, [0x00a9, 0x00a9, 2])	" Copyright Sign
-		"let cwdb = add(cwdb, [0x00ae, 0x00ae, 2])	" Registered Sign
+		"let cwdb = add(cwdb, [0x00a9, 0x00a9, 1])	" Copyright Sign
+		let cwdb = add(cwdb, [0x00ae, 0x00ae, 1])	" Registered Sign
 		"let cwdb = add(cwdb, [0x203c, 0x203c, 2])	" Double Exclamation Mark
 		"let cwdb = add(cwdb, [0x2049, 0x2049, 2])	" Exclamation Question Mark
 		"let cwdb = add(cwdb, [0x2122, 0x2122, 2])	" Trade Mark Sign
