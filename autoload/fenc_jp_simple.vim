@@ -71,9 +71,9 @@ function! fenc_jp_simple#setup(...)
 		let cwdb = add(cwdb, [0xb9, 0xb9, 1])	" Superscript 1
 		"let cwdb = add(cwdb, [0x00a9, 0x00a9, 1])	" Copyright Sign
 		let cwdb = add(cwdb, [0x00ae, 0x00ae, 1])	" Registered Sign
-		"let cwdb = add(cwdb, [0x203c, 0x203c, 2])	" Double Exclamation Mark
-		"let cwdb = add(cwdb, [0x2049, 0x2049, 2])	" Exclamation Question Mark
-		"let cwdb = add(cwdb, [0x2122, 0x2122, 2])	" Trade Mark Sign
+		"let cwdb = add(cwdb, [0x203c, 0x203c, 1])	" Double Exclamation Mark
+		"let cwdb = add(cwdb, [0x2049, 0x2049, 1])	" Exclamation Question Mark
+		let cwdb = add(cwdb, [0x2122, 0x2122, 1])	" Trade Mark Sign
 		let cwdb = add(cwdb, [0x2139, 0x2139, 2])	" Information Source
 		let cwdb = add(cwdb, [0x2328, 0x2328, 2])	" Keyboard
 		let cwdb = add(cwdb, [0x23cf, 0x23cf, 2])	" Eject Symbol
