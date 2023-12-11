@@ -75,6 +75,7 @@ function! fenc_jp_simple#setup(...)
 		"let cwdb = add(cwdb, [0x2049, 0x2049, 1])	" Exclamation Question Mark
 		let cwdb = add(cwdb, [0x2122, 0x2122, 1])	" Trade Mark Sign
 		let cwdb = add(cwdb, [0x2139, 0x2139, 2])	" Information Source
+		let cwdb = add(cwdb, [0x2194, 0x2199, 1])	" 1 byte width Arrows
 		let cwdb = add(cwdb, [0x2328, 0x2328, 2])	" Keyboard
 		let cwdb = add(cwdb, [0x23cf, 0x23cf, 2])	" Eject Symbol
 		let cwdb = add(cwdb, [0x25fb, 0x25fc, 2])	" White/Black Medium Square
