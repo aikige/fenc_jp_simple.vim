@@ -79,7 +79,9 @@ function! fenc_jp_simple#setup(...)
 		let cwdb = add(cwdb, [0x2328, 0x2328, 2])	" Keyboard
 		let cwdb = add(cwdb, [0x23cf, 0x23cf, 2])	" Eject Symbol
 		let cwdb = add(cwdb, [0x25fb, 0x25fc, 2])	" White/Black Medium Square
-		let cwdb = add(cwdb, [0x2600, 0x26ff, 2])	" Block: Miscellaneous Symbols
+		let cwdb = add(cwdb, [0x2600, 0x265f, 2])	" Block: Miscellaneous Symbols
+		let cwdb = add(cwdb, [0x2660, 0x2666, 1])	" Playing Card Suits
+		let cwdb = add(cwdb, [0x2667, 0x26ff, 2])	" Block: Miscellaneous Symbols
 		let cwdb = add(cwdb, [0x2700, 0x27bf, 2])	" Block: Dingbats
 		let cwdb = add(cwdb, [0x2b00, 0x2bff, 2])	" Block: Miscellaneous Symbol and Arrows
 		"let cwdb = add(cwdb, [0x1f600, 0x1f64f, 2])	" Block: Emoticons (Face Marks)
