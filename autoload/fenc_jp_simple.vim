@@ -73,6 +73,8 @@ function! fenc_jp_simple#setup(...)
 		let cwdb = add(cwdb, [0x00ae, 0x00ae, 1])	" Registered Sign
 		"let cwdb = add(cwdb, [0x203c, 0x203c, 1])	" Double Exclamation Mark
 		"let cwdb = add(cwdb, [0x2049, 0x2049, 1])	" Exclamation Question Mark
+		let cwdb = add(cwdb, [0x0391, 0x03a9, 1])	" Greek, Upper
+		let cwdb = add(cwdb, [0x03b1, 0x03c9, 1])	" Greek, Lower
 		let cwdb = add(cwdb, [0x2122, 0x2122, 1])	" Trade Mark Sign
 		let cwdb = add(cwdb, [0x2139, 0x2139, 2])	" Information Source
 		let cwdb = add(cwdb, [0x2194, 0x2199, 1])	" 1 byte width Arrows
@@ -110,6 +112,11 @@ function! fenc_jp_simple#setup(...)
 		source $VIMRUNTIME/delmenu.vim
 		source $VIMRUNTIME/menu.vim
 	endif
+endfunction
+
+function! fenc_jp_simple#update()
+	unlet g:fenc_jp_encoding
+	call fenc_jp_simple#setup()
 endfunction
 
 " Restore user-configuration.
