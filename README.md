@@ -68,3 +68,17 @@ If you want to change default encoding of files, please execute following sequen
 call fenc_jp_simple#setup('some-encoding')
 ```
 
+### Setup for ambiguous width characters
+
+In UNICODE, there is category of characters called [Ambiguous Characters](https://unicode.org/reports/tr11/#Ambiguous) that has variation of width of glyph, and this script performs `set ambiwidth=double` to set double-byte as default width for these.
+
+But this is not enough for some characters, and this script is trying to perform additional width configurations for characters, especially related to Emoji.
+Here, the width of the Emoji has a strong dependency on the selected fonts, and this script uses the following fonts to determine the width of the characters:
+
+- [MS Gothic](https://learn.microsoft.com/typography/font-list/ms-gothic)
+- [UDEV Gothic](https://github.com/yuru7/udev-gothic)
+
+If there is a glyph width conflict between these fonts, MS Gothic is prioritized.
+
+Please be noted that when selected GUI font does not include glyph for Emoji, vim uses system font (in the case of Windows 10, "Segoe UI Emoji" is used).
+For detail, please refer [renderoptions](https://vimhelp.org/options.txt.html#%27renderoptions%27) in Vim help.
